@@ -1,0 +1,34 @@
+resource_registry:
+  # https://bugs.launchpad.net/tripleo/+bug/1870045/
+  # https://bugs.launchpad.net/tripleo/+bug/1869842
+  OS::TripleO::AllNodes::Validation: /usr/share/openstack-tripleo-heat-templates/ci/common/all-nodes-validation-disabled.yaml
+
+parameter_defaults:
+  CloudName: IP
+  ControlPlaneStaticRoutes: []
+  Debug: true
+  DeploymentUser: vagrant
+  DnsServers:
+    - 1.1.1.1
+    - 8.8.8.8
+  DockerInsecureRegistryAddress:
+    - IP:8787
+  NeutronPublicInterface: INTERFACE
+  # domain name used by the host
+  NeutronDnsDomain: localdomain
+  # re-use ctlplane bridge for public net, defined in the standalone
+  # net config (do not change unless you know what you're doing)
+  NeutronBridgeMappings: datacentre:br-ctlplane
+  NeutronPhysicalBridge: br-ctlplane
+  # enable to force metadata for public net
+  #NeutronEnableForceMetadata: true
+  StandaloneEnableRoutedNetworks: false
+  StandaloneHomeDir: /home/vagrant
+  StandaloneLocalMtu: 1500
+  # Needed if running in a VM, not needed if on baremetal
+  NovaComputeLibvirtType: kvm
+  GlanceBackend: file
+  ConfigDebug: true
+  OctaviaAmphoraSshKeyFile: /home/vagrant/.ssh/id_rsa.pub
+  OctaviaAmphoraImageFilename: /home/vagrant/amphora-x64-haproxy-centos.qcow2
+  OctaviaEnableDriverAgent: false

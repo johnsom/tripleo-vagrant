@@ -1,0 +1,6 @@
+Deploys master OpenStack TripleO standalone on CentOS 8
+
+Run:
+$ vagrant up
+$ vagrant ssh
+[vagrant@standalone-1 ~]$ ./deploy_standalone.sh
