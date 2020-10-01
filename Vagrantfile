@@ -45,6 +45,6 @@ Vagrant.configure("2") do |config|
     sudo -E tripleo-repos current-tripleo-rdo
     sudo dnf install -y python3-tripleoclient
     openstack tripleo container image prepare default --output-env-file $HOME/containers-prepare-parameters.yaml
-    curl -s -O https://images.rdoproject.org/octavia/master/amphora-x64-haproxy-centos.qcow2
+#    curl -s -O https://images.rdoproject.org/octavia/master/amphora-x64-haproxy-centos.qcow2
   SHELL
 end

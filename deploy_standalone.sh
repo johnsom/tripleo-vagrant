@@ -8,11 +8,14 @@ time sudo openstack tripleo deploy \
   -e /usr/share/openstack-tripleo-heat-templates/environments/low-memory-usage.yaml \
   -e /usr/share/openstack-tripleo-heat-templates/environments/disable-telemetry.yaml \
   -e /usr/share/openstack-tripleo-heat-templates/environments/disable-swift.yaml \
-  -e /usr/share/openstack-tripleo-heat-templates/environments/services/octavia.yaml \
+  -e /usr/share/openstack-tripleo-heat-templates/environments/enable-designate.yaml \
+  -e /usr/share/openstack-tripleo-heat-templates/environments/designate-config.yaml \
   -r /usr/share/openstack-tripleo-heat-templates/roles/Standalone.yaml \
   -e $HOME/containers-prepare-parameters.yaml \
   -e $HOME/standalone_parameters.yaml \
+  --control-virtual-ip 10.20.30.45 \
   --output-dir $HOME \
   --standalone
   #-e /usr/share/openstack-tripleo-heat-templates/environments/enable-designate.yaml \
   #-e /usr/share/openstack-tripleo-heat-templates/environments/designate-config.yaml \
+  #-e /usr/share/openstack-tripleo-heat-templates/environments/services/octavia.yaml \

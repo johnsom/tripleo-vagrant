@@ -1,6 +1,24 @@
 Deploys master OpenStack TripleO standalone on CentOS 8
 
 Run:
+$ sudo dnf config-manager --set-enabled PowerTools
+$ sudo dnf config-manager --set-enabled Devel
+$ sudo dnf install -y epel-release
+$ sudo dnf install -y git wget libvirt libvirt-devel ruby-devel gcc qemu-kvm make rpm-build autoconf bison cmake flex keyutils-libs-devel latexmk libcom_err-devel libedit-devel libselinux-devel libss-devel libverto-devel ncurses-devel openldap-devel openssl-devel pam-devel python3 python3-sphinx tcl-devel texlive texlive-latex texlive-pdftex texlive-texmf-fonts yasm
+$ sudo dnf install -y texlive-babel texlive-capt-of texlive-eqparbox texlive-fancybox texlive-fncychap texlive-framed texlive-hyperref texlive-multirow texlive-needspace texlive-tabulary texlive-threeparttable texlive-times texlive-titlesec texlive-upquote texlive-wrapfig
+$ git clone https://github.com/johnsom/tripleo-vagrant.git
+$ wget https://releases.hashicorp.com/vagrant/2.2.10/vagrant_2.2.10_x86_64.rpm
+$ wget http://vault.centos.org/8.2.2004/BaseOS/Source/SPackages/krb5-1.17-18.el8.src.rpm
+$ mkdir krb5
+$ cd krb5
+$ rpm2cpio ../krb5-1.17-18.el8.src.rpm | cpio -imdV
+$ tar xf krb5-1.17.tar.gz
+$ cd krb5-1.17/src
+$ LDFLAGS='-L/opt/vagrant/embedded/' ./configure
+$ make
+$ sudo cp lib/libk5crypto.so.3 /opt/vagrant/embedded/lib64/
+$ vagrant plugin install vagrant-libvirt
+$ usermod --append --groups libvirt `whoami`
 $ vagrant up
 $ vagrant ssh
 [vagrant@standalone-1 ~]$ ./deploy_standalone.sh
